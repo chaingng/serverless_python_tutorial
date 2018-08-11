@@ -4,13 +4,14 @@ from flask_blog import db
 from flask_blog.models.entries import Entry
 from flask_blog.views.views import login_required
 from flask import Blueprint
+import pdb
 
 entry = Blueprint('entry', __name__)
 
 @entry.route('/')
 @login_required
 def show_entries():
-    entries = Entry.query.order_by(Entry.id.desc()).all()
+    entries = Entry.scan()
     return render_template('entries/index.html', entries=entries)
 
 
@@ -21,8 +22,7 @@ def add_entry():
             title=request.form['title'],
             text=request.form['text']
             )
-    db.session.add(entry)
-    db.session.commit()
+    entry.save()
     flash('新しく記事が作成されました')
     return redirect(url_for('entry.show_entries'))
 
@@ -36,25 +36,24 @@ def new_entry():
 @entry.route('/entries/<int:id>', methods=['GET'])
 @login_required
 def show_entry(id):
-    entry = Entry.query.get(id)
+    entry = Entry.get(id)
     return render_template('entries/show.html', entry=entry)
 
 
 @entry.route('/entries/<int:id>/edit', methods=['GET'])
 @login_required
 def edit_entry(id):
-    entry = Entry.query.get(id)
+    entry = Entry.get(id)
     return render_template('entries/edit.html', entry=entry)
 
 
 @entry.route('/entries/<int:id>/update', methods=['POST'])
 @login_required
 def update_entry(id):
-    entry = Entry.query.get(id)
+    entry = Entry.get(id)
     entry.title = request.form['title']
     entry.text = request.form['text']
-    db.session.merge(entry)
-    db.session.commit()
+    entry.save()
     flash('記事が更新されました')
     return redirect(url_for('entry.show_entries'))
 
@@ -62,8 +61,7 @@ def update_entry(id):
 @entry.route('/entries/<int:id>/delete', methods=['POST'])
 @login_required
 def delete_entry(id):
-    entry = Entry.query.get(id)
-    db.session.delete(entry)
-    db.session.commit()
+    entry = Entry.get(id)
+    entry.delete()
     flash('投稿が削除されました')
     return redirect(url_for('entry.show_entries'))

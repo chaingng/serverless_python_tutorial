@@ -10,6 +10,7 @@ name = "pypi"
 flask = "*"
 flask-sqlalchemy = "*"
 flask-script = "*"
+pynamodb = "*"
 
 
 [dev-packages]
