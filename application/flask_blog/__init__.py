@@ -1,13 +1,13 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 app = Flask(__name__)
 app.config.from_object('flask_blog.config')
 
-db = SQLAlchemy(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
 
-from flask_blog.views.entries import entry
+from flask_blog.lib.utils import setup_auth
+setup_auth(app, login_manager)
 
-app.register_blueprint(entry, url_prefix='/users')
-
-from flask_blog.views import views
+from flask_blog.views import views, entries
