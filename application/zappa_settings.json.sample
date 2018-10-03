@@ -1,0 +1,16 @@
+{
+    "dev": {
+        "app_function": "server.app",
+        "profile_name": "serverless-blog",
+        "project_name": "application",
+        "runtime": "python3.6",
+        "s3_bucket": "zappa-xxxx"
+        "environment_variables": {
+            "SERVERLESS_BLOG_CONFIG": "production",
+            "SERVERLESS_USER_PW": "[USER PASSWORD]",
+            "SERVERLESS_SECRET_KEY": "[APP SECRETKEY]]",
+            "SERVERLESS_AWS_ACCESS_KEY_ID": "[AWS_ACCESS_KEY_ID]",
+            "SERVERLESS_AWS_SECRERT_KEY": "[AWS_SECRERT_KEY]"
+        }
+    }
+}

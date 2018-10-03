@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "app_function": "bot.app",
+        "profile_name": "serverless-blog",
+        "project_name": "serverless-bot",
+        "runtime": "python3.6",
+        "s3_bucket": "zappa-xxxx",
+        "environment_variables": {
+            "SERVERLESS_AWS_ACCESS_KEY_ID": "[AWS_ACCESS_KEY_ID]",
+            "SERVERLESS_AWS_SECRERT_KEY": "[AWS_SECRERT_KEY]",
+            "SERVERLESS_SLACK_BOT_API_TOKEN": "[SLACK BOT TOKEN]"
+        },
+        "events": [
+            {
+                "function": "bot.run_bot",
+                "expression": "cron(59 14 * * ? *)"
+            }
+        ],
+    }
+}
