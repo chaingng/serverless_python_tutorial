@@ -1,6 +1,5 @@
 from flask_script import Manager
 from flask_blog import app
-
 from flask_blog.scripts.db import InitDB
 
 

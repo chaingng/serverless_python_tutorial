@@ -1,6 +1,5 @@
 from flask import request, redirect, url_for, render_template, flash, session
 from flask_blog import app
-from functools import wraps
 from flask_login import login_user, logout_user, login_required
 from flask_blog.models.users import User
 
@@ -13,7 +12,7 @@ def login():
         elif request.form['password'] != app.config['PASSWORD']:
             flash('パスワードが異なります')
         else:
-            login_user(User("john"))
+            login_user(User("request.form['username']"))
             flash('ログインしました')
             return redirect(url_for('show_entries'))
     return render_template('login.html')
@@ -27,4 +26,4 @@ def logout():
 
 @app.errorhandler(404)
 def non_existant_route(error):
-   return redirect(url_for('login'))
+    return redirect(url_for('login'))
