@@ -1,4 +1,4 @@
 dynamodb_local_latest/shared-local-instance.db
 application/zappa_settings.json
 serverless-bot/zappa_settings.json
-serverless-bot/serverless-gas-client.json
+serverless-bot/serverless-gas-client-secret.json
