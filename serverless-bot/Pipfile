@@ -1,24 +1,19 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
-
 "boto3" = "*"
 pytz = "*"
 gspread = "*"
 "oauth2client" = "*"
 zappa = "*"
 slackclient = "*"
-
+pyyaml = ">=4.2b4"
+requests = ">=2.20.0"
 
 [dev-packages]
 
-
-
 [requires]
-
 python_version = "3.6"
