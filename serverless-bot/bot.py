@@ -3,21 +3,19 @@ import gspread
 import boto3
 import pytz
 from oauth2client.service_account import ServiceAccountCredentials
-from slackclient import SlackClient
+from slack import WebClient
 import os
 import pdb
 
 
 def notify_to_slack(message, channel='#kpi'):
     slack_token = os.environ.get('SERVERLESS_SLACK_BOT_API_TOKEN')
-    sc = SlackClient(slack_token)
-    sc.api_call(
-        "chat.postMessage",
+    client = WebClient(slack_token)
+    client.chat_postMessage(
         channel=channel,
         as_user=True,
         text=message
     )
-
 
 def get_kpi():
     client = boto3.client(
