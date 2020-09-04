@@ -1,6 +1,6 @@
 # 「Pythonで作るはじめてのサーバレスアプリケーション」サンプルコード
 
-「[Pythonで作るはじめてのサーバレスアプリケーション](https://www.amazon.co.jp/dp/B07JD6NDS7)」のサンプルコードです。
+「[Pythonで作るはじめてのサーバレスアプリケーション](https://amzn.to/2EKxH6Z)」のサンプルコードです。
 
 - application: サーバレスBlogアプリケーション
 - serverless-bot: サーバレスBot
