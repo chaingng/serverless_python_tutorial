@@ -21,7 +21,7 @@ def get_kpi():
     client = boto3.client(
         'dynamodb',
         aws_access_key_id=os.environ.get('SERVERLESS_AWS_ACCESS_KEY_ID'),
-        aws_secret_access_key=os.environ.get('SERVERLESS_AWS_SECRERT_KEY'),
+        aws_secret_access_key=os.environ.get('SERVERLESS_AWS_SECRET_KEY'),
         region_name='ap-northeast-1'
     )
 

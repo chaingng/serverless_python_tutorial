@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_login import LoginManager
+from flask_sessionstore import Session
 import os
 
 config = {
@@ -11,6 +12,7 @@ config = {
 app = Flask(__name__)
 config_name = os.getenv('SERVERLESS_BLOG_CONFIG', 'default')
 app.config.from_object(config[config_name])
+Session(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)

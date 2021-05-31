@@ -4,10 +4,9 @@ from pynamodb.attributes import UnicodeAttribute, NumberAttribute, UTCDateTimeAt
 from flask_blog.lib.utils import is_production
 import os
 
-
-class Entry(Model):
+class Session(Model):
     class Meta:
-        table_name = "serverless_blog_entries"
+        table_name = "serverless_blog_sessions"
         region = 'ap-northeast-1'
         if is_production():
             aws_access_key_id = os.environ.get('SERVERLESS_AWS_ACCESS_KEY_ID')
@@ -16,7 +15,5 @@ class Entry(Model):
             aws_access_key_id = 'AWS_ACEESS_KEY_ID'
             aws_secret_access_key = 'AWS_SECRET_ACCESS_KEY'
             host = "http://localhost:8000"
-    id = NumberAttribute(hash_key=True, null=False)
-    title = UnicodeAttribute(null=True)
-    text = UnicodeAttribute(null=True)
-    created_at = UTCDateTimeAttribute(default=datetime.now)
+    SessionId = UnicodeAttribute(hash_key=True, null=False)
+    Session = UnicodeAttribute(null=True)
