@@ -3,14 +3,19 @@ import gspread
 import boto3
 import pytz
 from oauth2client.service_account import ServiceAccountCredentials
-from slack import WebClient
+from slack_sdk import WebClient
+import ssl
 import os
 import pdb
 
 
-def notify_to_slack(message, channel='#kpi'):
+def notify_to_slack(message, channel='C01LD1QTEU8'):
+    ssl_context = ssl.create_default_context()
+    ssl_context.check_hostname = False
+    ssl_context.verify_mode = ssl.CERT_NONE
+    
     slack_token = os.environ.get('SERVERLESS_SLACK_BOT_API_TOKEN')
-    client = WebClient(slack_token)
+    client = WebClient(slack_token, ssl=ssl_context)
     client.chat_postMessage(
         channel=channel,
         as_user=True,
@@ -33,7 +38,7 @@ def get_kpi():
 def update_gas(today, entry_num):
     keyfile_path = 'serverless-gas-client-secret.json'
     scope = ['https://spreadsheets.google.com/feeds']
-    doc_id = '1Loagi0Bxr5OL4SdW_KkpKYtat4jIFYV-PTVU5o8cjZQ'
+    doc_id = '1xz4A1gjlzJ3KWGfSbei8R1387MhfjQ6LmnhpGMjJEWk'
 
     credentials = ServiceAccountCredentials.from_json_keyfile_name(
         keyfile_path, scope)

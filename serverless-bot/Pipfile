@@ -9,11 +9,11 @@ pytz = "*"
 gspread = "*"
 "oauth2client" = "*"
 zappa = "*"
-slackclient = "*"
 pyyaml = ">=4.2b1"
 requests = ">=2.20.0"
+slack-sdk = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.6"
+python_version = "3.8"
